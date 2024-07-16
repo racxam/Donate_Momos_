@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useState } from 'react';
-const navbar = () => {
+const Navbar = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const { data: session } = useSession();
   console.log(session);
@@ -90,4 +90,4 @@ const navbar = () => {
   )
 }
 
-export default navbar
+export default Navbar

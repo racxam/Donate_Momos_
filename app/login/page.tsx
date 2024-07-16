@@ -4,7 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 
 
-function page() {
+function LoginPage() {
     const { data: session } = useSession();
     const router=useRouter();
     console.log('GITHUB_ID:', process.env.GITHUN_ID);
@@ -15,8 +15,6 @@ function page() {
       router.push('/dashboard')
 
     }
-    
-``
     return (
         <div className='text-white container py-10 mx-auto'>
             <h1 className='font-bold text-2xl mx-5 md:text-3xl text-center'>Login/Signup to get your Fans support you</h1>
@@ -66,4 +64,4 @@ function page() {
     )
 }
 
-export default page
+export default LoginPage

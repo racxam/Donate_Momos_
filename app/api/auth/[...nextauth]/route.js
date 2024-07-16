@@ -1,3 +1,5 @@
+// app/api/auth/[...nextauth]/route.js
+
 import prisma from "@/components/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth from "next-auth";
@@ -8,7 +10,7 @@ if (!prisma) {
   throw new Error("Prisma client is not initialized");
 }
 
-export const authOptions = {
+const authOptions = {
   session: {
     strategy: "jwt",
   },
@@ -23,15 +25,13 @@ export const authOptions = {
           name: `${profile.given_name} ${profile.family_name}`,
           email: profile.email,
           image: profile.picture,
-
         };
       },
     }),
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-  
-    })
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -48,8 +48,8 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: '/login'}
-  
+    signIn: '/login',
+  },
 };
 
 const handler = NextAuth(authOptions);
